@@ -52,4 +52,3 @@ Route::post('/changepassword',[VerificationController::class,'changepassword'])-
 //     Route::get('get-user',[UserController::class,'userInfo']);
 //     //Route::get('',[NotesandlabelController::class,'addToNotes']);
 // });
-
