@@ -5,12 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class lable extends Model
+class PasswordReset extends Model
 {
     use HasFactory;
-    protected $table = 'lables';
+    protected $table = 'password_resets';
     protected $fillable = [
-        'notes_id',
-        'lable',           
+        'email',
+        'token',
+        'password',      
     ];
 }
