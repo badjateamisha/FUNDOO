@@ -4,8 +4,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CacheController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\Api\UserController;
 use App\Models\User;
+use App\Models\Contact;
 use App\Models\notes;
 use App\Models\lable;
 use App\Http\Controllers\LableController;
@@ -22,6 +24,15 @@ use App\Http\Controllers\VerificationController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+Route::post('create',[ContactController::class,'store']);
+Route::get('display',[ContactController::class,'display']);
+Route::get('display/{id}',[ContactController::class,'display_by_id']);
+Route::Put('updatebyID/{id}', [ContactController::class, 'update_by_id']);
+Route::post('updatebyID/{id}', [ContactController::class, 'update_by_id']);
+Route::Delete('deletebyID/{id}',[ContactController::class,'delete_by_id']);
+
+Route::post('changePassword',[ContactController::class,'changePassword']);
 
 Route::post('CreateNotes',[NotesController::class,'CreateNotes']);
 Route::get('displayNotes',[NotesController::class,'displayNotes']);
