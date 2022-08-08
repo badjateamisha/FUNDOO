@@ -7,89 +7,56 @@ use Illuminate\Http\Request;
 use App\Models\User; 
 use Illuminate\Support\Facades\Auth; 
 use Validator;
+
  
 
 class UserController extends Controller
 {
-    public $successToken = 200;
-    /**
-     * @OA\Post(
-     *   path="/api/newregister",
-     *   summary="register",
-     *   description="register",
-     *   @OA\RequestBody(
-     *         @OA\JsonContent(),
-     *         @OA\MediaType(
-     *            mediaType="multipart/form-data",
-     *            @OA\Schema(
-     *               type="object",
-     *               required={"name","email", "password"},
-     *               @OA\Property(property="name", type="string"),
-     *               @OA\Property(property="email", type="string"),
-     *               @OA\Property(property="password", type="string"),
-     *            ),
-     *        ),
-     *    ),
-     *   @OA\Response(response=201, description="User successfully registered"),
-     *   @OA\Response(response=401, description="The email has already been taken"),
-     * )
-     * 
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function register(Request $request)
-    {
-        $userData=User::where('email',$request->email)->first();
-        if($userData){
-            Log::channel('custom')->debug("the email has already registered");
-        }
-        $user=User::create([
-            'name'=>$request->name,
-            'email'=>$request->email,
-            'password'=>bcrypt($request->password)
-        ]);
-        $token=$user->createToken('Token')->accessToken;
-        return response()->json(['token'=>$token,'user'=>$user]);
+    public $successStatus = 200;
+        
+    public function login(){ 
+        if(Auth::attempt(['email' => request('email'), 'password' => request('password')])){ 
+            $user = Auth::user(); 
+            $success['token'] =  $user->createToken('MyLaravelApp')-> accessToken; 
+            $success['userId'] = $user->id;
+            return response()->json(['success' => $success], $this-> successStatus); 
+        } 
+        else{ 
+            return response()->json(['error'=>'Unauthorised'], 401); 
+        } 
     }
-     /**
-     * @OA\Post(
-     *   path="/api/login",
-     *   summary="login",
-     *   description="login",
-     *   @OA\RequestBody(
-     *         @OA\JsonContent(),
-     *         @OA\MediaType(
-     *            mediaType="multipart/form-data",
-     *            @OA\Schema(
-     *               type="object",
-     *               required={"email", "password"},
-     *               @OA\Property(property="email", type="string"),
-     *               @OA\Property(property="password", type="string"),
-     *            ),
-     *        ),
-     *    ),
-     *   @OA\Response(response=201, description="User successfully logged in "),
-     *   @OA\Response(response=401, description="Invalid Login"),
-     * )
+ 
+ /** 
+     * Register api 
      * 
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function login(Request $request){
-        $result = Auth::attempt(['email'=> $request->email, 'password' => $request ->password]);
-        if($result){
-            $user = new User();
-            $success['token'] = $user->createToken('MyLaravelApp')->accessToken;
-            return response()->json(['success'=>$success], $this->successToken);
-        }
-        else{
-            Log::channel('custom')->error("You entered wrong password");
-            return response()->json(['error'=>'Unauthorised'], 401);
-        }        
+     * @return \Illuminate\Http\Response 
+     */ 
+    public function register(Request $request) 
+    { 
+        $validator = Validator::make($request->all(), [ 
+            'name' => 'required',
+            'email' => 'required|email|unique:users',
+            'password' => 'required',
+          ]);
+        if ($validator->fails()) { 
+             return response()->json(['error'=>$validator->errors()], 401);            
+ }
+ $input = $request->all(); 
+        $input['password'] = bcrypt($input['password']); 
+        $user = User::create($input); 
+        $success['token'] =  $user->createToken('MyLaravelApp')-> accessToken; 
+        $success['name'] =  $user->name;
+ return response()->json(['success'=>$success], $this-> successStatus); 
     }
-    public function userInfo(Request $request){
-        $user = User::all();
-        return response()->json(['success' => $user], $this->successToken);
-         //return "welcome";
-     }
+ 
+ /** 
+     * details api 
+     * 
+     * @return \Illuminate\Http\Response 
+     */ 
+    public function userDetails() 
+    { 
+        $user = Auth::user(); 
+        return response()->json(['success' => $user], $this-> successStatus); 
+    }
     }
