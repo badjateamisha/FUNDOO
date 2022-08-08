@@ -7,6 +7,8 @@ use App\Models\lable;
 use App\Models\notes;
 use Illuminate\support\Facades\Hash;
 use Illuminate\support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+
 
 class LableController extends Controller
 {
@@ -15,12 +17,12 @@ class LableController extends Controller
     public function CreateLable(Request $request)
     {
         $request->validate( [
-            'lable_id' => 'required | integer ',
+            'notes_id' => 'required | integer ',
             'lable' => 'required | string |max:100',
         ]);
         
         $lable = lable::create([
-            'lable_id' => $request->lable_id,
+            'notes_id' => $request->notes_id,
             'lable' => $request->lable,
         ]);
         return response()->json([
@@ -58,14 +60,14 @@ class LableController extends Controller
        
         //validating the data to make it not to be null
         $request->validate( [
-            'lable_id' => 'required | integer ',
+            'notes_id' => 'required | integer ',
             'lable' => 'required | string |max:100',
         ]);
         
         $lable = lable::find($id);
         if($lable)
         {
-            $lable->lable_id = $request->lable_id;
+            $lable->notes_id = $request->notes_id;
             $lable->lable = $request->lable;
             
             $lable ->update();
@@ -99,7 +101,7 @@ class LableController extends Controller
         // API Function to JoinTable  by ID
     public function JoinTables()
     {
-        $join = DB::table('notes')->join('lables', 'notes.id','=','lables.lable_id')->select('notes.*','lables.lable')->get();
+        $join = DB::table('notes')->join('lables', 'notes.id','=','lables.notes_id')->select('notes.*','lables.lable')->get();
         return $join;
     }
 }

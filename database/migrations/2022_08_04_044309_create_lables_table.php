@@ -16,7 +16,7 @@ return new class extends Migration
     {
         Schema::create('lables', function (Blueprint $table) {
             $table->id();
-            $table->integer('lable_id');
+            $table->integer('notes_id');
             $table->string('lable');
             $table->timestamps();
         });

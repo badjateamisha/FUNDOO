@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\notes;
 use Illuminate\support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
+use Illuminate\support\Facades\DB;
+
+
 
 class NotesController extends Controller
 {
