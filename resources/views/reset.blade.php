@@ -1,7 +1,7 @@
 @component('mail::message')
 # Introduction
 
-Hello Your token is
+Hello Your token is:
 
 {{$token}}
 
