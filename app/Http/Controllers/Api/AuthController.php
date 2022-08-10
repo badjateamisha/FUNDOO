@@ -11,7 +11,29 @@ use Illuminate\Support\Facades\Log;
 
 class AuthController extends Controller
 {
-    /*
+    /**
+     * @OA\POST(
+     *   path="/api/registration",
+     *   summary="User Registration",
+     *   description="Registering through Name and Email",
+     *   @OA\RequestBody(
+     *         @OA\JsonContent(),
+     *         @OA\MediaType(
+     *            mediaType="multipart/form-data",
+     *            @OA\Schema(
+     *               type="object",
+     *               required={"name","email", "password"},
+     *               @OA\Property(property="name", type="string"),
+     *               @OA\Property(property="email", type="string"),
+     *               @OA\Property(property="password", type="string"),
+     *            ),
+     *        ),
+     *    ),
+     *   @OA\Response(response=201, description="User successfully registered"),
+     *   @OA\Response(response=401, description="The email has already been taken"),
+     * )
+     * 
+     *
      * @return \Illuminate\Http\JsonResponse
      */
     //Api for new user registration
@@ -45,7 +67,31 @@ class AuthController extends Controller
     }
  }
 
-
+ /**
+     * @OA\Post(
+     *   path="/api/login",
+     *   summary="login",
+     *   description="login",
+     *   @OA\RequestBody(
+     *         @OA\JsonContent(),
+     *         @OA\MediaType(
+     *            mediaType="multipart/form-data",
+     *            @OA\Schema(
+     *               type="object",
+     *               required={"email","password"},
+     *               @OA\Property(property="email", type="string"),
+     *               @OA\Property(property="password", type="string"),
+     *   
+     *            ),
+     *        ),
+     *    ),
+     *   @OA\Response(response=201, description="success"),
+     *   @OA\Response(response=401, description="Invalid credentials"),
+     * )
+     * 
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
     //API for Login
     public function login(Request $request)
     {
@@ -73,4 +119,13 @@ class AuthController extends Controller
             return response($response, 200);
         }
 }
+
+//API for logout
+public function logout()
+    {
+        auth()->user()->tokens()->delete();
+        return response(['message'=>'Logged Out Successfully']);
+
+    }
+
 }

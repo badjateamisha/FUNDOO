@@ -1,0 +1,452 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Your super  ApplicationAPI",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/registration": {
+            "post": {
+                "summary": "User Registration",
+                "description": "Registering through Name and Email",
+                "operationId": "86fa0c6c95acd02ff8566ab65d59affc",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "email",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "User successfully registered"
+                    },
+                    "401": {
+                        "description": "The email has already been taken"
+                    }
+                }
+            }
+        },
+        "/api/login": {
+            "post": {
+                "summary": "login",
+                "description": "login",
+                "operationId": "44212a9096e4b09358281e9ec8a0701d",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "email",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "success"
+                    },
+                    "401": {
+                        "description": "Invalid credentials"
+                    }
+                }
+            }
+        },
+        "/api/changePassword": {
+            "post": {
+                "summary": "Change Password",
+                "description": "Changing Password in Postman",
+                "operationId": "f1bcb35721f31388a805d7d6f5697fcc",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "email",
+                                    "password",
+                                    "newPassword"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "type": "email"
+                                    },
+                                    "password": {
+                                        "type": "password"
+                                    },
+                                    "newPassword": {
+                                        "type": "password"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "password updated successfully"
+                    },
+                    "401": {
+                        "description": "Check your old password"
+                    }
+                }
+            }
+        },
+        "/api/forgotPassword": {
+            "post": {
+                "summary": "forgotPassword ",
+                "description": "Resetting Password using forgotPassword function",
+                "operationId": "d28368710aedc68c40f174191375e254",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "email"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "type": "email"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Token Sent to Mail to Reset Password"
+                    },
+                    "404": {
+                        "description": "Email does not exists"
+                    }
+                }
+            }
+        },
+        "/api/resetPassword": {
+            "post": {
+                "summary": "Resetting Password",
+                "description": "Resetting Password through Token",
+                "operationId": "211cda1cffb059a40d068124659bb968",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "email",
+                                    "password",
+                                    "token"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "password"
+                                    },
+                                    "token": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "password Reset successfull"
+                    },
+                    "401": {
+                        "description": "You have entered invalid token"
+                    }
+                }
+            }
+        },
+        "/api/CreateLable": {
+            "post": {
+                "summary": "Creating lable",
+                "description": "Creating lable",
+                "operationId": "30818466b0b198b077f2590437a47dbd",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "lable_id",
+                                    "lable"
+                                ],
+                                "properties": {
+                                    "lable_id": {
+                                        "type": "integer"
+                                    },
+                                    "lable": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Lable Added Successfully"
+                    }
+                }
+            }
+        },
+        "/api/displayLable": {
+            "get": {
+                "summary": "display Lable",
+                "description": "display Lable data",
+                "operationId": "bda36eb69de76bc4cc4ee7aec34017bd",
+                "requestBody": {},
+                "responses": {
+                    "201": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/api/displayLable/{id}": {
+            "get": {
+                "summary": "displaying Lables",
+                "description": "Display Lable Based on ID",
+                "operationId": "8558ff6a0a8a722560afce9dc364a2cc",
+                "requestBody": {},
+                "responses": {
+                    "201": {
+                        "description": "success"
+                    },
+                    "401": {
+                        "description": "No Lable Found with That ID to Display"
+                    }
+                }
+            }
+        },
+        "/api/updateLable/{id}": {
+            "post": {
+                "summary": "Updating lable",
+                "description": "Update lable based on ID",
+                "operationId": "e4e199be2bdb37f2a78605de4e777032",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "lable_id",
+                                    "lable"
+                                ],
+                                "properties": {
+                                    "lable_id": {
+                                        "type": "integer"
+                                    },
+                                    "lable": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Lable Updated Successfully"
+                    },
+                    "401": {
+                        "description": "No Lable Found with that ID to Update"
+                    }
+                }
+            }
+        },
+        "/api/deleteLable/{id}": {
+            "delete": {
+                "summary": "Delete data",
+                "description": "delete users data by ID",
+                "operationId": "927e76554f961475c16b889ab6730851",
+                "requestBody": {},
+                "responses": {
+                    "201": {
+                        "description": "Lable Deleted Successfully"
+                    },
+                    "401": {
+                        "description": "No Lable Found with that ID to Delete"
+                    }
+                }
+            }
+        },
+        "/api/CreateNotes": {
+            "post": {
+                "summary": "Creating Notes",
+                "description": "Creating Notes",
+                "operationId": "272af9f5fa01ecc1a6426603d0b5306f",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "Title",
+                                    "Description"
+                                ],
+                                "properties": {
+                                    "Title": {
+                                        "type": "string"
+                                    },
+                                    "Description": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Notes Added Successfully"
+                    }
+                }
+            }
+        },
+        "/api/displayNotes": {
+            "get": {
+                "summary": "display Notes",
+                "description": "display Notes data",
+                "operationId": "26144b729bc72a08172cfa84b6f7044c",
+                "requestBody": {},
+                "responses": {
+                    "201": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/api/displayNotes/{id}": {
+            "get": {
+                "summary": "displaying Notes",
+                "description": "Display Notes Based on ID",
+                "operationId": "b68530bdc91e431dc286fc0b15cacc11",
+                "requestBody": {},
+                "responses": {
+                    "201": {
+                        "description": "success"
+                    },
+                    "401": {
+                        "description": "No Notes Found with That ID to Display"
+                    }
+                }
+            }
+        },
+        "/api/updateNotes/{id}": {
+            "post": {
+                "summary": "Updating Notes",
+                "description": "Update Notes based on ID",
+                "operationId": "594957528b6c78878f0bc3d9eef362a0",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "Title",
+                                    "Description"
+                                ],
+                                "properties": {
+                                    "Title": {
+                                        "type": "string"
+                                    },
+                                    "Description": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Notes Updated Successfully"
+                    },
+                    "401": {
+                        "description": "No Notes Found with that ID to Update"
+                    }
+                }
+            }
+        },
+        "/api/deleteNotes/{id}": {
+            "delete": {
+                "summary": "Delete Notes",
+                "description": "delete users notes by ID",
+                "operationId": "c69472298ba0f0c5709089475057eee7",
+                "requestBody": {},
+                "responses": {
+                    "201": {
+                        "description": "Notes Deleted Successfully"
+                    },
+                    "401": {
+                        "description": "No Notes Found with that ID to Delete"
+                    }
+                }
+            }
+        }
+    }
+}

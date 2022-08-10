@@ -15,11 +15,11 @@ class ContactControllerTest extends TestCase
             'Content-Type' => 'Application/json',
         ])
         ->json('POST', '/api/create', [
-            "UserName" => 'Komal',
-            "Email" => 'komal@gmail.com',
-            "Password" => 'komal123',
-            "MobileNumber" => '9089785667',
-            "Address" => 'Auranagbad',
+            "UserName" => 'zxc',
+            "Email" => 'zxc@gmail.com',
+            "Password" => 'zxc123',
+            "MobileNumber" => '1234512345',
+            "Address" => 'asd',
         ]);
 
         $response->assertStatus(200)->assertJson(['message' => 'Data Added Successfully']);
@@ -37,7 +37,7 @@ class ContactControllerTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function test_Retreivedata_ID()
+    public function test_Retrievedata_ID()
     {
         $response = $this->withHeaders([
             'Content-Type' => 'Application/json',
@@ -50,18 +50,18 @@ class ContactControllerTest extends TestCase
     }
 
     // Testcase for Updata Data
-    public function test_Update()
+    public function test_Updata()
     {
         $response = $this->withHeaders([
             'Content-Type' => 'Application/json',
         ])
-        ->json('POST', '/api/updatebyID/6', 
+        ->json('POST', '/api/updatebyID/3', 
         [
-            "UserName" => 'Aarvik',
-            "Email" => 'aarvik@gmail.com',
-            "Password" => 'aarvik123',
-            "MobileNumber" => '9010000109',
-            "Address" => 'Chinchwad',
+            "UserName" => 'zxc',
+            "Email" => 'zxc@gmail.com',
+            "Password" => 'zxc123',
+            "MobileNumber" => '1212121212',
+            "Address" => 'qwe',
         ]);
         $response->assertStatus(200)->assertJson(['message' => 'Data Updated Successfully']);
     }
@@ -80,18 +80,66 @@ class ContactControllerTest extends TestCase
             "MobileNumber" => '1234567890',
             "Address" => 'nagar',
         ]);
-        $response->assertStatus(200)->assertJson(['message' => 'No Data Found with that ID']);
+        $response->assertStatus(404)->assertJson(['message' => 'No Data Found with that ID']);
     }
 
     // Testcase for Delete Data
-    public function test_Delete()
+    public function test_Deletee()
     {
         $response = $this->withHeaders([
             'Content-Type' => 'Application/json',
         ])
-        ->json('Delete', '/api/deletebyID/9'
+        ->json('Delete', '/api/deletebyID/3'
         );
         $response->assertStatus(200)->assertJson(['message' => 'Data Deleted Successfully']);
     }
+
+//Test case for changing password
+    public function test_Change_Password()
+    {
+        $response = $this->withHeaders([
+            'Content-Type' => 'Application/json',
+        ])
+        ->json('POST', '/api/changePassword', 
+        [
+            'email' => 'alia@gmail.com',
+            'password' =>'alia123',
+            'newPassword' => 'alia1234',
+            
+        ]);
+        $response->assertStatus(200)->assertJson(['message' => 'password updated successfully']);
+    }
+
+
+    public function test_Forgot_Password()
+    {
+        $response = $this->withHeaders([
+            'Content-Type' => 'Application/json',
+        ])
+        ->json('POST', '/api/forgotPassword', 
+        [
+            'email' => 'amishabadjate175@gmail.com',
+            
+            
+        ]);
+        $response->assertStatus(200);
+    }
+
+
+    public function test_Reset_Password()
+    {
+        $response = $this->withHeaders([
+            'Content-Type' => 'Application/json',
+        ])
+        ->json('POST', '/api/resetPassword', 
+        [
+            'email' => 'amishabadjate175@gmail.com',
+            'password' => 'amisha12345',
+            'token' => 'tFDLVVmlB9'
+                        
+        ]);
+        $response->assertStatus(200);
+    }
+
 
 }

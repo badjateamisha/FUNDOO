@@ -37,6 +37,8 @@ Route::Delete('deletebyID/{id}',[ContactController::class,'delete_by_id']);
 //});
 Route::post('changePassword',[ContactController::class,'changePassword']);
 Route::post('forgotPassword',[ContactController::class,'forgotPassword']);
+Route::post('resetPassword',[ContactController::class,'resetPassword']);
+
 
 Route::post('CreateNotes',[NotesController::class,'CreateNotes']);
 Route::get('displayNotes',[NotesController::class,'displayNotes']);
