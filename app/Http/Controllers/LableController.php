@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Log;
 
 class LableController extends Controller
 {
-
      /**
      * @OA\POST(
      *   path="/api/CreateLable",

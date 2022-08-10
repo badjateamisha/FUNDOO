@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use App\Models\PasswordReset;
 
+
 class ContactController extends Controller
 {
     public function store(Request $request)
