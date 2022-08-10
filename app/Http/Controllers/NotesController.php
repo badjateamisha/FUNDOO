@@ -12,7 +12,6 @@ use Illuminate\support\Facades\DB;
 
 class NotesController extends Controller
 {
-
     /**
      * @OA\POST(
      *   path="/api/CreateNotes",
