@@ -328,6 +328,19 @@
                 }
             }
         },
+        "/api/jointables": {
+            "post": {
+                "summary": "Join Tables",
+                "description": "Join Tables by their ID",
+                "operationId": "b1d0079522077334a2c8109b736b7018",
+                "requestBody": {},
+                "responses": {
+                    "201": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
         "/api/CreateNotes": {
             "post": {
                 "summary": "Creating Notes",
@@ -444,6 +457,146 @@
                     },
                     "401": {
                         "description": "No Notes Found with that ID to Delete"
+                    }
+                }
+            }
+        },
+        "/api/pinNotesById": {
+            "post": {
+                "summary": "Pin Notes by ID",
+                "description": "Pin Notes by ID",
+                "operationId": "c67fd8a0beaddd7b14a0e12612691e69",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "id"
+                                ],
+                                "properties": {
+                                    "id": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Notes pinned Successfully"
+                    },
+                    "404": {
+                        "description": "No Notes Found with that ID"
+                    }
+                }
+            }
+        },
+        "/api/UnpinNotesById": {
+            "post": {
+                "summary": "UnPin Notes by ID",
+                "description": "UnPin Notes by ID",
+                "operationId": "2ed1eee98a286b701f630d35ddc7296a",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "id"
+                                ],
+                                "properties": {
+                                    "id": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Notes Unpinned Successfully"
+                    },
+                    "404": {
+                        "description": "No Notes Found with that ID"
+                    }
+                }
+            }
+        },
+        "/api/ArchieveNotesById": {
+            "post": {
+                "summary": "Archive Notes by ID",
+                "description": "Archive Notes by ID",
+                "operationId": "2cbcae3b5a4d868552cb3155fde922c6",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "id"
+                                ],
+                                "properties": {
+                                    "id": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Notes Archived Successfully"
+                    },
+                    "404": {
+                        "description": "No Notes Found with that ID"
+                    }
+                }
+            }
+        },
+        "/api/UnArchiveNotesById": {
+            "post": {
+                "summary": "UnArchive Notes by ID",
+                "description": "UnArchive Notes by ID",
+                "operationId": "e276bd575a652b4f20d612f7df6820e3",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "id"
+                                ],
+                                "properties": {
+                                    "id": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Notes UnArchived Successfully"
+                    },
+                    "404": {
+                        "description": "No Notes Found with that ID"
                     }
                 }
             }
