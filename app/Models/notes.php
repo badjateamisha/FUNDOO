@@ -16,6 +16,7 @@ class notes extends Model
         'archive',
     ];
 
+    
     public function noteId($id) {
         return Notes::where('id', $id)->first();
     }

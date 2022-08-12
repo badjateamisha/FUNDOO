@@ -17,6 +17,7 @@ return new class extends Migration
             $table->boolean('archive')->default(0)->after('pin');
         });
     }
+    
 
     /**
      * Reverse the migrations.
