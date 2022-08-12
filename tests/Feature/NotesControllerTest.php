@@ -63,4 +63,59 @@ class NotesControllerTest extends TestCase
             ]);
         $response->assertStatus(200)->assertJson(['message' => 'Data Deleted Successfully']);
     }
+
+     //Testcase case to PIN createdNotes
+     public function test_pin_Notes()
+     {
+         $response = $this->withHeaders([
+             'Content-Type' => 'Application/json',
+         ])
+             ->json('POST', '/api/pinNotesById', [
+                 'id' => '2',
+                 
+             ]);
+         $response->assertStatus(200)->assertJson(['message' => 'Notes pinned Successfully']);
+     }
+ 
+ 
+     //Testcase case to UnPIN createdNotes
+     public function test_UnPin_Notes()
+     {
+         $response = $this->withHeaders([
+             'Content-Type' => 'Application/json',
+         ])
+             ->json('POST', '/api/UnpinNotesById', [
+                 'id' => '2',
+                 
+             ]);
+         $response->assertStatus(200)->assertJson(['message' => 'Notes Unpinned Successfully']);
+     }
+ 
+ 
+     //Testcase case to Archive createdNotes
+     public function test_Archive_Notes()
+     {
+         $response = $this->withHeaders([
+             'Content-Type' => 'Application/json',
+         ])
+             ->json('POST', '/api/ArchieveNotesById', [
+                 'id' => '2',
+                 
+             ]);
+         $response->assertStatus(200)->assertJson(['message' => 'Notes Archived Successfully']);
+     }
+ 
+ 
+     //Testcase case to UnArchive createdNotes
+     public function test_UnArchive_Notes()
+     {
+         $response = $this->withHeaders([
+             'Content-Type' => 'Application/json',
+         ])
+             ->json('post', '/api/UnArchiveNotesById', [
+                 'id' => '2',
+                 
+             ]);
+         $response->assertStatus(200)->assertJson(['message' => 'Notes Unarchived successfully']);
+     }
 }
