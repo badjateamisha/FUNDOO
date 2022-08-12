@@ -47,6 +47,11 @@ Route::put('updateNotes/{id}',[NotesController::class,'updateNotes_ID']);
 Route::post('updateNotes/{id}',[NotesController::class,'updateNotes_ID']);
 Route::delete('deleteNotes/{id}',[NotesController::class,'deleteNotes_ID']);
 
+Route::post('pinNotesById',[NotesController::class,'pinNotesById']);
+Route::post('UnpinNotesById',[NotesController::class,'UnpinNotesById']);
+Route::post('ArchieveNotesById',[NotesController::class,'ArchieveNotesById']);
+Route::post('UnArchiveNotesById',[NotesController::class,'UnArchiveNotesById']);
+
 
 Route::post('CreateLable',[LableController::class,'CreateLable']);
 Route::get('displayLable',[LableController::class,'displayLable']);
